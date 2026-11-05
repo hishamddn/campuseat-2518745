@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { useCart } from '../hooks/useCart.js'
 
-function SpecialBanner({ specialItem, onAdd }) {
+function SpecialBanner({ specialItem }) {
+  const { addToCart } = useCart()
   const [timeLeft, setTimeLeft] = useState('')
   const [isEnded, setIsEnded] = useState(false)
 
@@ -14,7 +16,6 @@ function SpecialBanner({ specialItem, onAdd }) {
       targetTime.setHours(endHours, endMinutes, 0, 0)
 
       const diff = targetTime - now
-
       if (diff <= 0) {
         setTimeLeft('Deal ended')
         setIsEnded(true)
@@ -39,8 +40,7 @@ function SpecialBanner({ specialItem, onAdd }) {
   const promoPrice = specialItem.discountPrice || specialItem.price
 
   function handleAddSpecial() {
-    // Add to cart with the promo price
-    onAdd({
+    addToCart({
       ...specialItem,
       id: `${specialItem.id}-special`,
       name: `${specialItem.name} (Daily Special)`,

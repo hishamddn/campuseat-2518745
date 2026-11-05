@@ -23,3 +23,10 @@ Add a new section every week, before you tag. Did not use AI? Write "None" under
 - What I asked for: handling cart quantities/totals with reduce, and adding a live countdown timer to the special banner. Later asked how to fix duplicate items between the banner and the menu grid.
 - What I kept, changed or rejected, and why: Kept the AbortController fetch pattern and the cart line logic ({ item, qty }). For the special item, instead of removing it from the menu grid entirely, I went with a flash-deal approach: gave the banner a discounted price with the original price struck through, while keeping the regular price on the normal menu card.
 - One thing the AI got wrong and how I fixed it: The AI initially hardcoded the countdown end time to 22:00 inside the component and left the button active even after the timer hit "Deal ended." I added an `endsAt` field to each special in vendors.json so vendors can have different deadlines, and disabled the banner button once the countdown reaches zero.
+
+## Week 4
+
+- Tool(s): Gemini
+- What I asked for: How to implement React Router, custom hooks (useLocalStorage, useVendors, useCart), CartProvider context with localStorage, and the Week 4 personal feature step (displaying today's specials on the home page with deep links to vendor pages).
+- What I kept, changed or rejected, and why: Extracted cart and order state into CartProvider so components consume it via useCart() without prop drilling. Kept try/catch blocks in useLocalStorage to prevent JSON parsing errors. Added the specials showcase on HomePage.
+- One thing the AI got wrong and how I fixed it: Verified that imports come directly from 'react-router' rather than 'react-router-dom'.
